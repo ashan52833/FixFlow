@@ -1,9 +1,9 @@
-import Home from './Home.jsx';
+import Sidebar from "./Components/Customer-sidebar";
 
 function App() {
   return (
     <>
-      <Home />
+      <Sidebar />
     </>
   );
 }

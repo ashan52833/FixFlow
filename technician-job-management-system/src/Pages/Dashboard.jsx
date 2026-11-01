@@ -1,0 +1,207 @@
+
+import { jobs } from "../data/jobs";
+import StatCard from "../Components/statcard";
+
+function Dashboard({ onNavigate }) {
+
+  const totalJobs = jobs.length;
+
+  const activeJobs = jobs.filter(
+    (job) => job.status !== "Completed"
+  ).length;
+
+  const completedJobs = jobs.filter(
+    (job) => job.status === "Completed"
+  ).length;
+
+  const revenue = jobs
+    .filter((job) => job.status === "Completed")
+    .reduce((total, job) => total + job.cost, 0);
+
+  const technicians = [
+    {
+      name: "Kasun Perera",
+      skill: "AC Repair, Electrical",
+      status: "Available"
+    },
+    {
+      name: "Amal Silva",
+      skill: "Plumbing, Appliances",
+      status: "Available"
+    },
+    {
+      name: "Nimal Jayasinghe",
+      skill: "Electrical, Maintenance",
+      status: "Busy"
+    }
+  ];
+
+  return (
+    <div className="dashboard">
+
+      <div className="page-heading">
+
+        <div>
+          <p className="eyebrow">BUSINESS OVERVIEW</p>
+
+          <h1>Dashboard Overview</h1>
+
+          <p className="page-description">
+            Welcome back! Here is your service business overview.
+          </p>
+        </div>
+
+        <button
+          className="primary-btn"
+          onClick={() => onNavigate("Service Requests")}
+        >
+          + New Service Request
+        </button>
+
+      </div>
+
+      {/* Statistics */}
+
+      <div className="stats-grid">
+
+        <StatCard
+          title="Total Jobs"
+          value={totalJobs}
+          icon="▤"
+          description="All service records"
+        />
+
+        <StatCard
+          title="Active Jobs"
+          value={activeJobs}
+          icon="◷"
+          description="Not yet completed"
+        />
+
+        <StatCard
+          title="Completed Jobs"
+          value={completedJobs}
+          icon="✓"
+          description="Finished services"
+        />
+
+        <StatCard
+          title="Revenue"
+          value={`Rs. ${revenue.toLocaleString("en-US")}`}
+          icon="₨"
+          description="Completed job estimates"
+        />
+
+      </div>
+
+      {/* Recent Jobs */}
+
+      <div className="content-grid">
+
+        <section className="content-card">
+
+          <div className="section-heading">
+            <h2>Recent Jobs</h2>
+
+            <button
+              className="text-btn"
+              onClick={() => onNavigate("Jobs")}
+            >
+              View All →
+            </button>
+          </div>
+
+          <div className="table-container">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>JOB ID</th>
+                  <th>CUSTOMER</th>
+                  <th>SERVICE</th>
+                  <th>TECHNICIAN</th>
+                  <th>STATUS</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                {jobs.map((job) => (
+
+                  <tr key={job.id}>
+
+                    <td>#{job.id}</td>
+
+                    <td>{job.customer}</td>
+
+                    <td>{job.service}</td>
+
+                    <td>{job.technician}</td>
+
+                    <td>
+                      <span
+                        className={`status ${job.status
+                          .toLowerCase()
+                          .replaceAll(" ", "-")}`}
+                      >
+                        {job.status}
+                      </span>
+                    </td>
+
+                  </tr>
+
+                ))}
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </section>
+
+        {/* Technician List */}
+
+        <section className="content-card">
+
+          <h2 className="section-title">
+            Technician Availability
+          </h2>
+
+          {technicians.map((technician) => (
+
+            <div className="technician-item" key={technician.name}>
+
+              <div className="avatar">
+                {technician.name.charAt(0)}
+              </div>
+
+              <div className="technician-info">
+                <strong>{technician.name}</strong>
+                <small>{technician.skill}</small>
+              </div>
+
+              <span
+                className={
+                  technician.status === "Available"
+                    ? "available"
+                    : "busy"
+                }
+              >
+                {technician.status}
+              </span>
+
+            </div>
+
+          ))}
+
+        </section>
+
+      </div>
+
+    </div>
+  );
+}
+
+export default Dashboard;
