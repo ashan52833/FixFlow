@@ -1,0 +1,10 @@
+function Logout() {
+    return (
+        <>
+            <h1>Logout</h1>
+            <p>Are you sure you want to logout?</p>
+        </>
+    );
+}
+
+export default Logout;
