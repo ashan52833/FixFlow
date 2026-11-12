@@ -1,0 +1,379 @@
+/* ==========================================================================
+   FixFlow — Technician Job Management System
+   Custom Brand Stylesheet (Light Mode Design System)
+   Palette:
+     Primary Deep Navy: #0F2647 / #16325B
+     Secondary Teal:    #00A896 / #028090
+     Accent Warm Amber: #F59E0B / #D97706
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties (Light Mode Design Tokens)
+   Purpose: Defines the global color variables, background surfaces, borders,
+   sidebar palette, and card elevation shadow used across all FixFlow pages.
+   -------------------------------------------------------------------------- */
+:root,
+[data-bs-theme="light"] {
+    --ff-primary: #0F2647;               /* Primary brand deep navy color */
+    --ff-primary-hover: #16325B;         /* Hover state for primary navy elements */
+    --ff-secondary: #00A896;             /* Secondary brand teal accent color */
+    --ff-secondary-hover: #028090;       /* Hover state for secondary teal buttons/links */
+    --ff-accent: #F59E0B;                /* Warm amber highlight for call-to-action badges/buttons */
+    --ff-accent-hover: #D97706;          /* Hover state for warm amber buttons */
+    --ff-bg-body: #F4F7FA;               /* Soft light gray-blue page background */
+    --ff-bg-surface: #FFFFFF;            /* Pure white surface for cards, tables, and topbars */
+    --ff-bg-subtle: #EDF2F7;             /* Subtle secondary background for nested containers */
+    --ff-text-main: #0F172A;             /* High-contrast slate dark text for primary readability */
+    --ff-text-muted: #475569;            /* Muted slate text for secondary labels and descriptions */
+    --ff-border: #E2E8F0;                /* Crisp light border color for cards and dividers */
+    --ff-sidebar-bg: #0F2647;            /* Deep navy background for role dashboard sidebars */
+    --ff-sidebar-text: #CBD5E1;          /* Soft light slate text for inactive sidebar links */
+    --ff-sidebar-active: #00A896;        /* Teal background highlight for the active sidebar route */
+    --ff-card-shadow: 0 4px 20px rgba(15, 38, 71, 0.06); /* Subtle elevation shadow for cards */
+}
+
+/* --------------------------------------------------------------------------
+   2. Base Document & Body Layout
+   Purpose: Sets the Inter sans-serif font stack, light background color,
+   primary text color, and full-viewport flex column layout so footers stick
+   cleanly to the bottom of the screen.
+   -------------------------------------------------------------------------- */
+body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--ff-bg-body);
+    color: var(--ff-text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------
+   3. Brand Color Utility Classes
+   Purpose: Provides reusable background (`.bg-*`) and text color (`.text-*`)
+   helper classes for FixFlow's Navy, Teal, and Warm Amber brand palette.
+   -------------------------------------------------------------------------- */
+.bg-navy { background-color: #0F2647 !important; color: #FFFFFF !important; }
+.bg-teal { background-color: var(--ff-secondary) !important; color: #FFFFFF !important; }
+.bg-accent { background-color: var(--ff-accent) !important; color: #0F172A !important; }
+.text-navy { color: var(--ff-primary) !important; }
+.text-teal { color: var(--ff-secondary) !important; }
+.text-accent { color: var(--ff-accent) !important; }
+
+/* --------------------------------------------------------------------------
+   4. Custom Brand Buttons
+   Purpose: Styles `.btn-navy`, `.btn-teal`, and `.btn-accent` buttons with
+   bold typography, brand background fills, and smooth hover/focus states.
+   -------------------------------------------------------------------------- */
+/* Primary deep navy button style */
+.btn-navy {
+    background-color: #0F2647;
+    border-color: #0F2647;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+/* Darkens/shifts navy button on hover or keyboard focus */
+.btn-navy:hover, .btn-navy:focus {
+    background-color: #16325B;
+    border-color: #16325B;
+    color: #FFFFFF;
+}
+
+/* Secondary teal button style used for primary form submissions */
+.btn-teal {
+    background-color: var(--ff-secondary);
+    border-color: var(--ff-secondary);
+    color: #FFFFFF;
+    font-weight: 600;
+}
+/* Darker teal shade when hovering or focusing a teal button */
+.btn-teal:hover, .btn-teal:focus {
+    background-color: var(--ff-secondary-hover);
+    border-color: var(--ff-secondary-hover);
+    color: #FFFFFF;
+}
+
+/* Outline teal button variant for secondary actions */
+.btn-outline-teal {
+    color: var(--ff-secondary);
+    border-color: var(--ff-secondary);
+    background-color: transparent;
+    font-weight: 600;
+}
+.btn-outline-teal:hover, .btn-outline-teal:focus {
+    background-color: var(--ff-secondary);
+    border-color: var(--ff-secondary);
+    color: #FFFFFF;
+}
+
+/* Warm amber call-to-action button with high-contrast dark text */
+.btn-accent {
+    background-color: var(--ff-accent);
+    border-color: var(--ff-accent);
+    color: #0F172A;
+    font-weight: 700;
+}
+/* Richer amber shade when hovering or focusing an accent button */
+.btn-accent:hover, .btn-accent:focus {
+    background-color: var(--ff-accent-hover);
+    border-color: var(--ff-accent-hover);
+    color: #0F172A;
+}
+
+/* --------------------------------------------------------------------------
+   5. Public Website Navigation Bar
+   Purpose: Styles the sticky top navbar on public pages with a navy gradient,
+   teal bottom accent border, and pill-shaped navigation link highlights.
+   -------------------------------------------------------------------------- */
+.ff-public-navbar {
+    background: linear-gradient(90deg, #0F2647 0%, #16325B 100%);
+    border-bottom: 3px solid var(--ff-secondary);
+    padding: 0.75rem 0;
+}
+/* Default appearance of public navbar links */
+.ff-public-navbar .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+    padding: 0.5rem 0.9rem !important;
+    border-radius: 6px;
+}
+/* Highlights public navbar links on hover or when matching the active route */
+.ff-public-navbar .nav-link:hover,
+.ff-public-navbar .nav-link.active {
+    color: #FFFFFF !important;
+    background-color: rgba(0, 168, 150, 0.22);
+}
+
+/* --------------------------------------------------------------------------
+   6. Public Homepage Hero Banner
+   Purpose: Renders a full-width diagonal gradient banner blending deep navy
+   into rich teal with white typography and generous vertical padding.
+   -------------------------------------------------------------------------- */
+.ff-hero {
+    background: linear-gradient(135deg, #0F2647 0%, #12355B 55%, #006D77 100%);
+    color: #FFFFFF;
+    padding: 4.5rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   7. Content Cards & KPI Statistic Cards
+   Purpose: Styles standard white content containers (`.ff-card`), interactive
+   hover-lift cards (`.ff-card-hover`), and left-bordered KPI metric cards
+   (`.ff-stat-card`) used on Customer, Technician, and Admin dashboards.
+   -------------------------------------------------------------------------- */
+/* Base card container with white surface, rounded corners, and soft shadow */
+.ff-card {
+    background-color: var(--ff-bg-surface);
+    border: 1px solid var(--ff-border);
+    border-radius: 12px;
+    box-shadow: var(--ff-card-shadow);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+/* Lifts interactive directory/category cards slightly when hovered */
+.ff-card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px rgba(0, 168, 150, 0.14);
+}
+
+/* Dashboard KPI summary card with a prominent colored left accent bar */
+.ff-stat-card {
+    background-color: var(--ff-bg-surface);
+    border: 1px solid var(--ff-border);
+    border-left: 4px solid var(--ff-secondary);
+    border-radius: 10px;
+    padding: 1.25rem;
+    box-shadow: var(--ff-card-shadow);
+}
+/* Color modifiers for the left border of dashboard KPI stat cards */
+.ff-stat-card.accent-border { border-left-color: var(--ff-accent); }
+.ff-stat-card.navy-border   { border-left-color: #0F2647; }
+.ff-stat-card.danger-border { border-left-color: #DC2626; }
+
+/* --------------------------------------------------------------------------
+   8. Role Dashboard Layout (Sidebar, Main Content Area & Topbar)
+   Purpose: Controls the two-column flex layout for Customer, Technician, and
+   Admin portals, including the fixed-width left navigation sidebar, scrollable
+   navigation list, main workspace column, and sticky top header bar.
+   -------------------------------------------------------------------------- */
+/* Outer flex wrapper spanning the full viewport height */
+.ff-dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Left navigation sidebar styled in deep navy */
+.ff-sidebar {
+    width: 270px;
+    min-width: 270px;
+    background-color: var(--ff-sidebar-bg);
+    color: var(--ff-sidebar-text);
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    transition: margin-left 0.25s ease;
+    z-index: 1030;
+}
+
+/* Top brand logo header inside the sidebar */
+.ff-sidebar-brand {
+    padding: 1.15rem 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.15);
+}
+
+/* Scrollable vertical list of sidebar navigation items */
+.ff-sidebar-nav {
+    list-style: none;
+    padding: 0.75rem 0.65rem;
+    margin: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+/* Spacing between individual sidebar menu items */
+.ff-sidebar-nav li {
+    margin-bottom: 3px;
+}
+
+/* Individual clickable link or logout button inside the sidebar */
+.ff-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.62rem 0.9rem;
+    color: var(--ff-sidebar-text);
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.91rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+}
+
+/* Icon alignment and teal color inside sidebar menu links */
+.ff-sidebar-link i {
+    font-size: 1.05rem;
+    width: 20px;
+    text-align: center;
+    color: #00A896;
+}
+
+/* Subtle translucent highlight when hovering over a sidebar link */
+.ff-sidebar-link:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #FFFFFF;
+}
+
+/* Solid teal background and white text/icon for the active sidebar route */
+.ff-sidebar-link.active {
+    background-color: var(--ff-sidebar-active);
+    color: #FFFFFF;
+    font-weight: 600;
+}
+.ff-sidebar-link.active i {
+    color: #FFFFFF;
+}
+
+/* Right-hand main content column that expands to fill remaining width */
+.ff-main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background-color: var(--ff-bg-body);
+}
+
+/* Sticky white top header bar containing page title, breadcrumbs, and user menu */
+.ff-topbar {
+    background-color: var(--ff-bg-surface);
+    border-bottom: 1px solid var(--ff-border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+/* --------------------------------------------------------------------------
+   9. Chronological Job Status Audit Timeline Stepper
+   Purpose: Renders a vertical teal line with circular node markers on the left
+   of each status history entry in the Customer Job Details view.
+   -------------------------------------------------------------------------- */
+/* Vertical timeline container with a left teal border line */
+.ff-timeline {
+    position: relative;
+    padding-left: 1.75rem;
+    border-left: 2px solid var(--ff-secondary);
+}
+/* Individual timeline step container */
+.ff-timeline-item {
+    position: relative;
+    padding-bottom: 1.25rem;
+}
+/* Circular teal dot positioned directly over the vertical timeline border */
+.ff-timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.18rem;
+    top: 0.25rem;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: var(--ff-secondary);
+    border: 2px solid var(--ff-bg-surface);
+}
+
+/* --------------------------------------------------------------------------
+   10. Simulated OTP & Development Sandbox Notification Banners
+   Purpose: Highlights local WampServer testing notices (simulated SMS OTP codes
+   and simulated payment gateway callbacks) in a warm amber callout box.
+   -------------------------------------------------------------------------- */
+.ff-dev-banner {
+    background: linear-gradient(90deg, #FEF3C7 0%, #FDE68A 100%);
+    color: #92400E;
+    border: 1px solid #F59E0B;
+    border-left: 5px solid #D97706;
+    border-radius: 8px;
+    padding: 0.85rem 1.15rem;
+}
+
+/* --------------------------------------------------------------------------
+   11. Responsive Mobile & Tablet Sidebar Drawer
+   Purpose: Collapses the 270px sidebar off-screen on viewports narrower than
+   992px (Bootstrap `lg` breakpoint) and slides it in when `.show` is toggled.
+   -------------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+    .ff-sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        margin-left: -270px;
+    }
+    .ff-sidebar.show {
+        margin-left: 0;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   12. Print Media Stylesheet (Invoices & Official Payment Receipts)
+   Purpose: Hides navigation bars, sidebars, footers, and action buttons
+   (`.no-print`) when printing or saving an invoice/receipt as a PDF, and
+   forces clean black-on-white bordered output.
+   -------------------------------------------------------------------------- */
+@media print {
+    .no-print, .ff-sidebar, .ff-topbar, .ff-public-navbar, footer {
+        display: none !important;
+    }
+    body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+    }
+    .ff-card {
+        box-shadow: none !important;
+        border: 1px solid #CBD5E1 !important;
+    }
+}
